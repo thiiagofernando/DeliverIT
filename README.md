@@ -2,14 +2,14 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 #
-API de Cadastro de Contas a Pagar utilizando JWT , Com Autenticação e com as funções de
+API de Cadastro de Contas a Pagar utilizando JWT para Autenticação e com as funções de
 
   - Cadastro de Usuários.
   - Login de Usuários Utilizando Autenticação com JWT.
   - Gerador de Token de Acesso.
   - Cadastro de Contas.
   - Listagem de Contas.
-  - Cálculo de Contas e Multas por Atraso.
+  - Cálculo de Juros e Multas por Atraso.
 
 # Tecnologias  e Ferramentas Utilizados!
 
