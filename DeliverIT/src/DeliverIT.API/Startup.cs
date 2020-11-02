@@ -16,8 +16,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Localization;
 
 namespace DeliverIT.API
 {
@@ -45,13 +47,13 @@ namespace DeliverIT.API
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
-            //-> Documentação da API
+            //-> DocumentaÃ§Ã£o da API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Serviço de integração",
+                    Title = "ServiÃ§o de integraÃ§Ã£o",
                     Description = "API de Contas a Pagar",
                     TermsOfService = new Uri("http://deliverit.com.br"),
                     Contact = new OpenApiContact
@@ -64,8 +66,8 @@ namespace DeliverIT.API
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = @"Cabeçalho de autorização JWT usando o esquema Bearer.
-                      Digite 'Bearer' [espaço] e, em seguida, seu token na entrada Ex:
+                    Description = @"CabeÃ§alho de autorizaÃ§Ã£o JWT usando o esquema Bearer.
+                      Digite 'Bearer' [espaÃ§o] e, em seguida, seu token na entrada Ex:
                        'Bearer 12345abcdef' ",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
@@ -141,6 +143,15 @@ namespace DeliverIT.API
             app.UseAuthentication();
             app.UseAuthorization();
 
+            var defaultCulture = new CultureInfo("pt-BR");
+            var localizationsOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(defaultCulture),
+                SupportedCultures = new List<CultureInfo>{defaultCulture},
+                SupportedUICultures = new List<CultureInfo>{defaultCulture}
+            };
+            app.UseRequestLocalization(localizationsOptions);
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
