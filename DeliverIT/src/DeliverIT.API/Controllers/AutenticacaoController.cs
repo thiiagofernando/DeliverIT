@@ -63,11 +63,10 @@ namespace DeliverIT.Api.Controllers
             }
             try
             {
-                //usuario.Password = PasswordService.GeneratePassword(usuario.Password);
                 var novaoUsuario = new Usuario
                 {
                     Username = usuario.Username,
-                    Password = PasswordService.GeneratePassword(usuario.Password) //usuario.Password
+                    Password = PasswordService.GeneratePassword(usuario.Password)
                 };
                 _repository.GravarNovoUsuario(novaoUsuario);
                 _repository.SaveChanges();
